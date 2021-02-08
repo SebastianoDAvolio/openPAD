@@ -17,7 +17,7 @@ namespace OpenPAD
             this.Text = String.Format("Informazioni su {0}", AssemblyTitle);
             this.labelProductName.Text = AssemblyProduct;
             this.labelVersion.Text = String.Format("Versione {0}", AssemblyVersion);
-            this.labelCopyright.Text = "Sebastiano D'Avolio";
+            this.labelCopyright.Text = "Sebastiano D'Avolio, Andrea Costamagna";
         }
 
         #region Funzioni di accesso attributo assembly
@@ -103,6 +103,11 @@ namespace OpenPAD
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void About_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

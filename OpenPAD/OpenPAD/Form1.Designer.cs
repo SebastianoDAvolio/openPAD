@@ -29,11 +29,12 @@ namespace OpenPAD
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.document = new System.Windows.Forms.RichTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.nuovoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.apriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salvaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,7 +44,10 @@ namespace OpenPAD
             this.inviaPerPostaElettronicaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.informazioniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.esciToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.mainFont = new System.Windows.Forms.FontDialog();
+            this.fontViewer = new System.Windows.Forms.TextBox();
+            this.fontSelector = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -53,11 +57,23 @@ namespace OpenPAD
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel1.Controls.Add(this.fontSelector);
+            this.panel1.Controls.Add(this.fontViewer);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Location = new System.Drawing.Point(-2, 24);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1083, 63);
             this.panel1.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.BackgroundImage = global::OpenPAD.Properties.Resources._new;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.Location = new System.Drawing.Point(5, 10);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(51, 43);
+            this.button1.TabIndex = 0;
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // document
             // 
@@ -69,7 +85,7 @@ namespace OpenPAD
             this.document.Location = new System.Drawing.Point(56, 93);
             this.document.Name = "document";
             this.document.ShowSelectionMargin = true;
-            this.document.Size = new System.Drawing.Size(960, 520);
+            this.document.Size = new System.Drawing.Size(960, 584);
             this.document.TabIndex = 2;
             this.document.Text = "";
             // 
@@ -102,11 +118,6 @@ namespace OpenPAD
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "&File";
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openDialog";
-            this.openFileDialog1.Filter = "Rich Text File (*.rtf)|*.rtf|Simple Text txt (*.txt)|*.txt|All files (*.*)|*.*";
-            // 
             // nuovoToolStripMenuItem
             // 
             this.nuovoToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -130,6 +141,7 @@ namespace OpenPAD
             this.salvaToolStripMenuItem.Name = "salvaToolStripMenuItem";
             this.salvaToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.salvaToolStripMenuItem.Text = "&Salva";
+            this.salvaToolStripMenuItem.Click += new System.EventHandler(this.salvaToolStripMenuItem_Click);
             // 
             // salvaConNomeToolStripMenuItem
             // 
@@ -175,29 +187,45 @@ namespace OpenPAD
             this.esciToolStripMenuItem.Text = "&Esci";
             this.esciToolStripMenuItem.Click += new System.EventHandler(this.esciToolStripMenuItem_Click);
             // 
-            // button1
+            // openFileDialog1
             // 
-            this.button1.BackgroundImage = global::OpenPAD.Properties.Resources._new;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.Location = new System.Drawing.Point(5, 10);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(51, 43);
-            this.button1.TabIndex = 0;
-            this.button1.UseVisualStyleBackColor = true;
+            this.openFileDialog1.FileName = "openDialog";
+            this.openFileDialog1.Filter = "Rich Text File (*.rtf)|*.rtf|Simple Text txt (*.txt)|*.txt|All files (*.*)|*.*";
+            // 
+            // fontViewer
+            // 
+            this.fontViewer.Location = new System.Drawing.Point(58, 10);
+            this.fontViewer.Name = "fontViewer";
+            this.fontViewer.Size = new System.Drawing.Size(100, 20);
+            this.fontViewer.TabIndex = 1;
+            // 
+            // fontSelector
+            // 
+            this.fontSelector.Location = new System.Drawing.Point(164, 8);
+            this.fontSelector.Name = "fontSelector";
+            this.fontSelector.Size = new System.Drawing.Size(30, 23);
+            this.fontSelector.TabIndex = 2;
+            this.fontSelector.Text = "...";
+            this.fontSelector.UseVisualStyleBackColor = true;
+            this.fontSelector.Click += new System.EventHandler(this.fontSelector_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
-            this.ClientSize = new System.Drawing.Size(1081, 614);
+            this.ClientSize = new System.Drawing.Size(1081, 677);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.document);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "OpenPAD";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -222,6 +250,9 @@ namespace OpenPAD
         private System.Windows.Forms.ToolStripMenuItem esciToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button fontSelector;
+        private System.Windows.Forms.TextBox fontViewer;
+        private System.Windows.Forms.FontDialog mainFont;
     }
 }
 
