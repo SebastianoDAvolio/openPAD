@@ -32,3 +32,15 @@ C:\Users\sebas\Documents\Github\openPAD\OpenPAD\obj\Debug\OpenPAD.csproj.CoreCom
 C:\Users\sebas\Documents\Github\openPAD\OpenPAD\obj\Debug\OpenPAD.exe
 C:\Users\sebas\Documents\Github\openPAD\OpenPAD\obj\Debug\OpenPAD.pdb
 C:\Users\sebas\Documents\Github\openPAD\OpenPAD\obj\Debug\OpenPAD.email.resources
+C:\Users\costa\Downloads\Desktop\wordPAD\OpenPAD\bin\Debug\OpenPAD.exe.config
+C:\Users\costa\Downloads\Desktop\wordPAD\OpenPAD\bin\Debug\OpenPAD.exe
+C:\Users\costa\Downloads\Desktop\wordPAD\OpenPAD\bin\Debug\OpenPAD.pdb
+C:\Users\costa\Downloads\Desktop\wordPAD\OpenPAD\obj\Debug\OpenPAD.csprojAssemblyReference.cache
+C:\Users\costa\Downloads\Desktop\wordPAD\OpenPAD\obj\Debug\OpenPAD.About.resources
+C:\Users\costa\Downloads\Desktop\wordPAD\OpenPAD\obj\Debug\OpenPAD.Form1.resources
+C:\Users\costa\Downloads\Desktop\wordPAD\OpenPAD\obj\Debug\OpenPAD.email.resources
+C:\Users\costa\Downloads\Desktop\wordPAD\OpenPAD\obj\Debug\OpenPAD.Properties.Resources.resources
+C:\Users\costa\Downloads\Desktop\wordPAD\OpenPAD\obj\Debug\OpenPAD.csproj.GenerateResource.cache
+C:\Users\costa\Downloads\Desktop\wordPAD\OpenPAD\obj\Debug\OpenPAD.csproj.CoreCompileInputs.cache
+C:\Users\costa\Downloads\Desktop\wordPAD\OpenPAD\obj\Debug\OpenPAD.exe
+C:\Users\costa\Downloads\Desktop\wordPAD\OpenPAD\obj\Debug\OpenPAD.pdb

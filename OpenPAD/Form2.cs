@@ -28,5 +28,10 @@ namespace OpenPAD
         {
             this.Close();
         }
+
+        private void email_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

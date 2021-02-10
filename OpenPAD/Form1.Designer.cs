@@ -49,6 +49,9 @@ namespace OpenPAD
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.mainFont = new System.Windows.Forms.FontDialog();
             this.saveFile = new System.Windows.Forms.SaveFileDialog();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printDialog1 = new System.Windows.Forms.PrintDialog();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -106,6 +109,7 @@ namespace OpenPAD
             this.document.Size = new System.Drawing.Size(960, 584);
             this.document.TabIndex = 2;
             this.document.Text = "";
+            this.document.TextChanged += new System.EventHandler(this.document_TextChanged);
             // 
             // menuStrip1
             // 
@@ -175,6 +179,7 @@ namespace OpenPAD
             this.stampaToolStripMenuItem.Name = "stampaToolStripMenuItem";
             this.stampaToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.stampaToolStripMenuItem.Text = "&Stam&pa";
+            this.stampaToolStripMenuItem.Click += new System.EventHandler(this.stampaToolStripMenuItem_Click);
             // 
             // anteprimaDiStampaToolStripMenuItem
             // 
@@ -182,6 +187,7 @@ namespace OpenPAD
             this.anteprimaDiStampaToolStripMenuItem.Name = "anteprimaDiStampaToolStripMenuItem";
             this.anteprimaDiStampaToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.anteprimaDiStampaToolStripMenuItem.Text = "Antepri&ma di stampa";
+            this.anteprimaDiStampaToolStripMenuItem.Click += new System.EventHandler(this.anteprimaDiStampaToolStripMenuItem_Click);
             // 
             // inviaPerPostaElettronicaToolStripMenuItem
             // 
@@ -215,6 +221,24 @@ namespace OpenPAD
             // saveFile
             // 
             this.saveFile.Filter = "Rich Text File (*.rtf)|*.rtf|Simple Text txt (*.txt)|*.txt|All files (*.*)|*.*";
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            // 
+            // printDialog1
+            // 
+            this.printDialog1.UseEXDialog = true;
+            // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
             // 
             // Form1
             // 
@@ -261,6 +285,9 @@ namespace OpenPAD
         private System.Windows.Forms.TextBox fontViewer;
         private System.Windows.Forms.FontDialog mainFont;
         private System.Windows.Forms.SaveFileDialog saveFile;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.PrintDialog printDialog1;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
     }
 }
 

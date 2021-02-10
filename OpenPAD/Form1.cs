@@ -15,6 +15,7 @@ namespace OpenPAD
     {
         string CMDpath;
         string filename;
+        bool saved = false;
         public Form1(string path)
         {
             CMDpath = path;
@@ -160,9 +161,9 @@ namespace OpenPAD
         }
 
 
-        private void save(bool name) //non funziona
+        private void save(bool name)
         {
-            if (name)
+            if (name==false)
             {
                 DialogResult res = saveFile.ShowDialog();
                 filename = saveFile.FileName;
@@ -187,6 +188,7 @@ namespace OpenPAD
             {
                 System.IO.File.WriteAllText(name, document.Text);
             }
+            saved = true;
         }
 
         private void inviaPerPostaElettronicaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -194,6 +196,74 @@ namespace OpenPAD
             string exp= ExportFile();
             email form = new email(exp);
             form.Show();
+        }
+
+        private void stampaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (printDialog1.ShowDialog() == DialogResult.OK)
+            {
+                printDocument1.Print();
+            }
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            //Bitmap bm = new Bitmap(document.Width,document.Height);
+            //Rectangle rc = new Rectangle(0, 0, this.document.Width, this.document.Height);
+            //document.DrawToBitmap(bm, rc);
+            //e.Graphics.DrawImage(bm, 0, 0);
+
+            string stringToPrint="";
+            if (saved)
+            {
+                
+                printDocument1.DocumentName = filename;
+
+                //per stampare il file aperto --> però prima bisogna salvare
+                using (FileStream stream = new FileStream(CMDpath, FileMode.Open))
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    stringToPrint = reader.ReadToEnd();
+                }
+            }
+            else
+            {
+
+            }
+            
+            
+
+            //per stampare cosa c'è scritto in "document"
+            //stringToPrint = document.Text;
+
+            int charactersOnPage = 0;
+            int linesPerPage = 0;
+
+            e.Graphics.MeasureString(stringToPrint, this.Font,
+                e.MarginBounds.Size, StringFormat.GenericTypographic,
+                out charactersOnPage, out linesPerPage);
+
+
+
+            e.Graphics.DrawString(stringToPrint, this.Font, Brushes.Black,
+                e.MarginBounds, StringFormat.GenericTypographic);
+
+            stringToPrint = stringToPrint.Substring(charactersOnPage);
+
+            e.HasMorePages = (stringToPrint.Length > 0);
+        }
+
+        private void anteprimaDiStampaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //documento da visualizzare nell'anteprima
+            //printPreviewDialog1.Document = filename;
+
+            printPreviewDialog1.ShowDialog();
+        }
+
+        private void document_TextChanged(object sender, EventArgs e)
+        {
+            saved = false;
         }
     }
 }

@@ -106,6 +106,7 @@ namespace OpenPAD
             this.Name = "email";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Invia per posta elettronica";
+            this.Load += new System.EventHandler(this.email_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
