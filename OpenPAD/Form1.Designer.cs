@@ -48,7 +48,7 @@ namespace OpenPAD
             this.esciToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.mainFont = new System.Windows.Forms.FontDialog();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.saveFile = new System.Windows.Forms.SaveFileDialog();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -189,6 +189,7 @@ namespace OpenPAD
             this.inviaPerPostaElettronicaToolStripMenuItem.Name = "inviaPerPostaElettronicaToolStripMenuItem";
             this.inviaPerPostaElettronicaToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.inviaPerPostaElettronicaToolStripMenuItem.Text = "&Invia per posta elettronica";
+            this.inviaPerPostaElettronicaToolStripMenuItem.Click += new System.EventHandler(this.inviaPerPostaElettronicaToolStripMenuItem_Click);
             // 
             // informazioniToolStripMenuItem
             // 
@@ -210,7 +211,10 @@ namespace OpenPAD
             // 
             this.openFileDialog1.FileName = "openDialog";
             this.openFileDialog1.Filter = "Rich Text File (*.rtf)|*.rtf|Simple Text txt (*.txt)|*.txt|All files (*.*)|*.*";
-            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            // 
+            // saveFile
+            // 
+            this.saveFile.Filter = "Rich Text File (*.rtf)|*.rtf|Simple Text txt (*.txt)|*.txt|All files (*.*)|*.*";
             // 
             // Form1
             // 
@@ -256,7 +260,7 @@ namespace OpenPAD
         private System.Windows.Forms.Button fontSelector;
         private System.Windows.Forms.TextBox fontViewer;
         private System.Windows.Forms.FontDialog mainFont;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFile;
     }
 }
 

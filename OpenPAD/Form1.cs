@@ -15,7 +15,6 @@ namespace OpenPAD
     {
         string CMDpath;
         string filename;
-        bool newFile=true;
         public Form1(string path)
         {
             CMDpath = path;
@@ -27,6 +26,7 @@ namespace OpenPAD
             fontViewer.Text = document.Font.Name;
             if (CMDpath!="NOPATH")
             {
+                filename = CMDpath;
                 if (CMDpath.Contains(".rtf"))
                 {
                     Read(CMDpath, true);
@@ -35,8 +35,23 @@ namespace OpenPAD
                     Read(CMDpath,false);
                 }
             }
+            else
+            {
+                filename = "";
+            }
         }
-
+        private string ExportFile() {
+            string tempName = filename;
+            filename = "comms/"+DateTime.Now.Ticks.ToString()+".rtf";
+            if (!System.IO.Directory.Exists("comms"))
+            {
+                System.IO.Directory.CreateDirectory("comms");
+            }
+            save(false);
+            string exp = filename;
+            filename = tempName;
+            return exp;
+        }
         private void Read(string addr, bool asRtf)
         {
             if(asRtf){
@@ -49,7 +64,6 @@ namespace OpenPAD
                     MessageBox.Show("Errore durante il caricamento del file rtf, verra` tentato il caricamento come file di testo semplice","Errore durante la lettura del file rtf",MessageBoxButtons.OK,MessageBoxIcon.Error);
                     Read(addr, false);
                 }
-                
             }
             else
             {
@@ -69,12 +83,10 @@ namespace OpenPAD
 
         private void apriToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            newFile = false;
             DialogResult res = openFileDialog1.ShowDialog();
             if (res == DialogResult.OK)
             {
                 filename = openFileDialog1.FileName;
-                //filename = openFileDialog1.SafeFileName;
                 if (filename.Contains(".rtf"))
                 {
                     Read(openFileDialog1.FileName,true);
@@ -90,16 +102,23 @@ namespace OpenPAD
         private void nuovoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NewDoc();
-            newFile = true;
         }
 
         private void NewDoc()
         {
             if (document.Text != "") {
+                DialogResult res = MessageBox.Show("Il documento non e' vuoto, sicuro di voler cancellare le modifiche?","Nuovo documento",MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
+                if (res==DialogResult.OK)
+                {
+                    document.Clear();
+                    filename = "";
+                }
+            }
+            else
+            {
                 document.Clear();
                 filename = "";
             }
-            //inserire conferma operazione
         }
 
         private void esciToolStripMenuItem_Click(object sender, EventArgs e)
@@ -132,121 +151,49 @@ namespace OpenPAD
 
         private void salvaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (newFile == true)
-            {
-                if (CMDpath != "NOPATH")
-                {
-                    if (CMDpath.Contains(".rtf"))
-                    {
-                        saveWithName(true);
-                    }
-                    else
-                    {
-                        saveWithName(false);
-                    }
-                }
-            }
-            else
-            {
-                save(true);
-            }
-            
+            save(false);
         }
 
         private void salvaConNomeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-                if (CMDpath.Contains(".rtf"))
-                {
-                    saveWithName(true);
-                }
-                else
-                {
-                    saveWithName(false);
-                }
+            save(true);
         }
 
 
-        private void save(bool asRtf) //non funziona
+        private void save(bool name) //non funziona
         {
-            if (asRtf)
+            if (name)
             {
-                //salvataggio file rtf
+                DialogResult res = saveFile.ShowDialog();
+                filename = saveFile.FileName;
+                if (res==DialogResult.OK)
+                {
+                    execSave(filename);
+                }
             }
             else
             {
-                try
-                {
-                    if (CMDpath != "NOPATH")
-                    {
-                        if (CMDpath.Contains(".rtf"))
-                        {
-                            Read(CMDpath, true);
-                        }
-                        else
-                        {
-                            Read(CMDpath, false);
-                        }
-                    }
-                    StreamWriter myStream = new StreamWriter(CMDpath);
-                    SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-
-                    if (myStream != null)
-                    {
-                        myStream.Write(document.Text);
-                        myStream.Close();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Errore durante il salvataggio del file di testo, Errore:" + ex.Message, "Errore durante la scritture del file di testo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                execSave(filename);
             }
-            
-
         }
 
-        private void saveWithName(bool asRtf) //non salva il font e grassetto/corsivo/sottolineato
+        private void execSave(string name)
         {
-            if (asRtf)
+            if (name.Contains(".rtf"))
             {
-                //salvataggio file rtf con nome
+                System.IO.File.WriteAllText(name, document.Rtf);
             }
-            else
+            else 
             {
-                try
-                {
-                    Stream myStream;
-                    SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-
-                    var fileContent = string.Empty;
-                    saveFileDialog1.Filter = "rtf files (*.rtf)|*.rtf|txt files (*.txt)|*.txt| All files (*.*)|*.*";
-                    saveFileDialog1.FilterIndex = 2;
-                    saveFileDialog1.RestoreDirectory = true;
-
-                    if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-                    {
-                        if ((myStream = saveFileDialog1.OpenFile()) != null)
-                        {
-                            using (StreamWriter writer = new StreamWriter(myStream))
-                            {
-                                writer.Write(document.Text);
-                                writer.Close();
-                            }
-                            myStream.Close();
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Errore durante il salvataggio del file di testo, Errore:" + ex.Message,"Errore durante la scritture del file di testo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                System.IO.File.WriteAllText(name, document.Text);
             }
-            
         }
 
-        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        private void inviaPerPostaElettronicaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            string exp= ExportFile();
+            email form = new email(exp);
+            form.Show();
         }
     }
 }
