@@ -33,7 +33,7 @@ namespace OpenPAD
             this.panel1 = new System.Windows.Forms.Panel();
             this.fontSelector = new System.Windows.Forms.Button();
             this.fontViewer = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.newDoc_btn = new System.Windows.Forms.Button();
             this.document = new System.Windows.Forms.RichTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,7 +63,7 @@ namespace OpenPAD
             this.panel1.BackColor = System.Drawing.Color.Gainsboro;
             this.panel1.Controls.Add(this.fontSelector);
             this.panel1.Controls.Add(this.fontViewer);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.newDoc_btn);
             this.panel1.Location = new System.Drawing.Point(-2, 24);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1083, 63);
@@ -86,15 +86,16 @@ namespace OpenPAD
             this.fontViewer.Size = new System.Drawing.Size(100, 20);
             this.fontViewer.TabIndex = 1;
             // 
-            // button1
+            // newDoc_btn
             // 
-            this.button1.BackgroundImage = global::OpenPAD.Properties.Resources._new;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.Location = new System.Drawing.Point(5, 10);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(51, 43);
-            this.button1.TabIndex = 0;
-            this.button1.UseVisualStyleBackColor = true;
+            this.newDoc_btn.BackgroundImage = global::OpenPAD.Properties.Resources._new;
+            this.newDoc_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.newDoc_btn.Location = new System.Drawing.Point(5, 10);
+            this.newDoc_btn.Name = "newDoc_btn";
+            this.newDoc_btn.Size = new System.Drawing.Size(51, 43);
+            this.newDoc_btn.TabIndex = 0;
+            this.newDoc_btn.UseVisualStyleBackColor = true;
+            this.newDoc_btn.Click += new System.EventHandler(this.newDoc_btn_Click);
             // 
             // document
             // 
@@ -280,7 +281,7 @@ namespace OpenPAD
         private System.Windows.Forms.ToolStripMenuItem informazioniToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem esciToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button newDoc_btn;
         private System.Windows.Forms.Button fontSelector;
         private System.Windows.Forms.TextBox fontViewer;
         private System.Windows.Forms.FontDialog mainFont;

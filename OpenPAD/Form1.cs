@@ -265,5 +265,10 @@ namespace OpenPAD
         {
             saved = false;
         }
+
+        private void newDoc_btn_Click(object sender, EventArgs e)
+        {
+            NewDoc();
+        }
     }
 }
