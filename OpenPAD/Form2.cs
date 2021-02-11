@@ -5,9 +5,11 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Net.Mail;
 
 namespace OpenPAD
 {
@@ -21,18 +23,29 @@ namespace OpenPAD
         }
         private void okbtn_Click(object sender, EventArgs e)
         {
-            Process.Start("mailto:"+ System.Net.WebUtility.UrlEncode(desttxt.Text)+"?subject="+objtxt.Text+ "&attachment="+ System.Net.WebUtility.UrlEncode(filename));
-            this.Close();
+            if (mittText.Text!="" && desttxt.Text!="" && objtxt.Text!="")
+            {
+                var client = new SmtpClient();
+                MailMessage message = new MailMessage(mittText.Text, desttxt.Text, objtxt.Text, "");
+                Attachment file = new Attachment(filename);
+                message.Attachments.Add(file);
+                client.UseDefaultCredentials = true;
+                client.DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory;
+                client.PickupDirectoryLocation = Application.StartupPath+"\\comms";
+                client.Send(message);
+                var defaultMsgPath = new DirectoryInfo("comms").GetFiles()
+                      .OrderByDescending(f => f.LastWriteTime)
+                      .First();
+                var realMsgPath = Path.Combine("comms", DateTime.Now.Ticks.ToString()+".eml");
+                File.Move(defaultMsgPath.FullName, realMsgPath);
+                Process.Start(realMsgPath);
+                this.Close();
+            }
         }
 
         private void cancelbtn_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void email_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

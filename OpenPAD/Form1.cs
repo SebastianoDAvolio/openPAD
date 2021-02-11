@@ -28,6 +28,8 @@ namespace OpenPAD
             Appear('C');
             fontViewer.Text = document.Font.Name;
             fontSize.Value = (decimal)document.Font.Size;
+            document.SelectAll();
+            document.SelectionCharOffset = (int)interline.Value;
             if (CMDpath != "NOPATH")
             {
                 filename = CMDpath;
@@ -369,8 +371,26 @@ namespace OpenPAD
                         forecolorDial.Color = Color.White;
                     }
                     break;
-                //case 'X':
-                    //esponente
+                case 'X':
+                    if (document.SelectionCharOffset<10)
+                    {
+                        document.SelectionCharOffset += 5;
+                    }
+                    if (document.SelectionCharOffset>=10)
+                    {
+                        document.SelectionCharOffset = (int)interline.Value;
+                    }
+                    break;
+                case 'Y':
+                    if (document.SelectionCharOffset > -10)
+                    {
+                        document.SelectionCharOffset -= 5;
+                    }
+                    if (document.SelectionCharOffset <= -10)
+                    {
+                        document.SelectionCharOffset = (int)interline.Value;
+                    }
+                    break;
             }
         }
 
@@ -470,6 +490,104 @@ namespace OpenPAD
             Exception ex = new Exception("Printing Error");
             pt.GeneralPrintForm("Print", document.Rtf, ref ex);
             return;
+        }
+
+        private void hiddenBold_Click(object sender, EventArgs e)
+        {
+            Appear('B');
+        }
+
+        private void hiddenItalic_Click(object sender, EventArgs e)
+        {
+            Appear('I');
+        }
+
+        private void hiddenUnderline_Click(object sender, EventArgs e)
+        {
+            Appear('U');
+        }
+
+        private void hiddenFore_Click(object sender, EventArgs e)
+        {
+            Appear('F');
+        }
+
+        private void hiddenHighlight_Click(object sender, EventArgs e)
+        {
+            Appear('H');
+        }
+
+        private void hiddenLal_Click(object sender, EventArgs e)
+        {
+            Appear('L');
+        }
+
+        private void hiddenRal_Click(object sender, EventArgs e)
+        {
+            Appear('R');
+        }
+
+        private void hiddenCAl_Click(object sender, EventArgs e)
+        {
+            Appear('C');
+        }
+
+        private void hiddenEx_Click(object sender, EventArgs e)
+        {
+            Appear('X');
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Appear('Y');
+        }
+
+        private void hiddenPed_Click(object sender, EventArgs e)
+        {
+            Appear('Y');
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (document.Text != "")
+            {
+                DialogResult res = MessageBox.Show("Il documento non e' vuoto, sicuro di voler cancellare le modifiche?", "Nuovo documento", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if (res == DialogResult.OK)
+                {
+                    document.Clear();
+                    this.Close();
+                }
+                else
+                {
+                    save(false);
+                }
+            }
+            else
+            {
+                this.Close();
+            }
+        }
+
+        private void interline_ValueChanged(object sender, EventArgs e)
+        {
+            document.SelectAll();
+            document.SelectionCharOffset = (int)interline.Value;
+        }
+
+        private void annullaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            document.Undo();
+        }
+
+        private void ripetiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            document.Redo();
+        }
+
+        private void guidaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Help help = new Help();
+            help.Show();
         }
     }
 }

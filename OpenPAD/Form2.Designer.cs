@@ -36,24 +36,27 @@ namespace OpenPAD
             this.desttxt = new System.Windows.Forms.TextBox();
             this.objtxt = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.mittText = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // okbtn
             // 
-            this.okbtn.Location = new System.Drawing.Point(218, 58);
+            this.okbtn.Location = new System.Drawing.Point(218, 86);
             this.okbtn.Name = "okbtn";
             this.okbtn.Size = new System.Drawing.Size(75, 23);
-            this.okbtn.TabIndex = 0;
+            this.okbtn.TabIndex = 4;
             this.okbtn.Text = "&OK";
             this.okbtn.UseVisualStyleBackColor = true;
             this.okbtn.Click += new System.EventHandler(this.okbtn_Click);
             // 
             // cancelbtn
             // 
-            this.cancelbtn.Location = new System.Drawing.Point(137, 58);
+            this.cancelbtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.cancelbtn.Location = new System.Drawing.Point(137, 86);
             this.cancelbtn.Name = "cancelbtn";
             this.cancelbtn.Size = new System.Drawing.Size(75, 23);
-            this.cancelbtn.TabIndex = 1;
+            this.cancelbtn.TabIndex = 5;
             this.cancelbtn.Text = "&Cancella";
             this.cancelbtn.UseVisualStyleBackColor = true;
             this.cancelbtn.Click += new System.EventHandler(this.cancelbtn_Click);
@@ -61,7 +64,7 @@ namespace OpenPAD
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(12, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 13);
             this.label1.TabIndex = 2;
@@ -69,32 +72,52 @@ namespace OpenPAD
             // 
             // desttxt
             // 
-            this.desttxt.Location = new System.Drawing.Point(84, 6);
+            this.desttxt.Location = new System.Drawing.Point(84, 34);
             this.desttxt.Name = "desttxt";
             this.desttxt.Size = new System.Drawing.Size(209, 20);
-            this.desttxt.TabIndex = 3;
+            this.desttxt.TabIndex = 2;
             // 
             // objtxt
             // 
-            this.objtxt.Location = new System.Drawing.Point(84, 32);
+            this.objtxt.Location = new System.Drawing.Point(84, 60);
             this.objtxt.Name = "objtxt";
             this.objtxt.Size = new System.Drawing.Size(209, 20);
-            this.objtxt.TabIndex = 5;
+            this.objtxt.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 35);
+            this.label2.Location = new System.Drawing.Point(12, 63);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Oggetto:";
             // 
+            // mittText
+            // 
+            this.mittText.Location = new System.Drawing.Point(84, 8);
+            this.mittText.Name = "mittText";
+            this.mittText.Size = new System.Drawing.Size(209, 20);
+            this.mittText.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(48, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Mittente:";
+            // 
             // email
             // 
+            this.AcceptButton = this.okbtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(305, 86);
+            this.CancelButton = this.cancelbtn;
+            this.ClientSize = new System.Drawing.Size(305, 130);
+            this.Controls.Add(this.mittText);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.objtxt);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.desttxt);
@@ -106,7 +129,6 @@ namespace OpenPAD
             this.Name = "email";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Invia per posta elettronica";
-            this.Load += new System.EventHandler(this.email_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -120,5 +142,7 @@ namespace OpenPAD
         private System.Windows.Forms.TextBox desttxt;
         private System.Windows.Forms.TextBox objtxt;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox mittText;
+        private System.Windows.Forms.Label label3;
     }
 }
