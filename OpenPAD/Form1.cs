@@ -235,7 +235,7 @@ namespace OpenPAD
                 printDocument1.DocumentName = filename;
 
                 //per stampare il file aperto --> però prima bisogna salvare
-                using (FileStream stream = new FileStream(CMDpath, FileMode.Open))
+                using (FileStream stream = new FileStream(filename, FileMode.Open))
                 using (StreamReader reader = new StreamReader(stream))
                 {
                     stringToPrint = reader.ReadToEnd();
@@ -270,8 +270,16 @@ namespace OpenPAD
 
         private void anteprimaDiStampaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //documento da visualizzare nell'anteprima
-            //printPreviewDialog1.Document = filename;
+            //anteprima *.txt
+            printDocument1.DocumentName = filename;
+            printPreviewDialog1.Document = printDocument1;
+
+            //---------------------------------------------------------------------------------------
+
+
+            //printDocument1.DocumentName = document.Text;
+            //printPreviewDialog1.Document = printDocument1;
+
 
             printPreviewDialog1.ShowDialog();
         }
@@ -500,6 +508,12 @@ namespace OpenPAD
         private void button3_Click(object sender, EventArgs e)
         {
             NewDoc();
+        }
+
+        private void help_Click(object sender, EventArgs e)
+        {
+            About ab = new About();
+            ab.ShowDialog();
         }
     }
 }
