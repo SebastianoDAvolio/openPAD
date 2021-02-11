@@ -67,3 +67,4 @@ C:\Users\sebas\Documents\git\openPAD\OpenPAD\bin\Debug\OpenPAD.pdb
 \\Mac\Home\Desktop\openPAD\OpenPAD\obj\Debug\OpenPAD.csproj.CoreCompileInputs.cache
 \\Mac\Home\Desktop\openPAD\OpenPAD\obj\Debug\OpenPAD.exe
 \\Mac\Home\Desktop\openPAD\OpenPAD\obj\Debug\OpenPAD.pdb
+C:\Users\sebas\Documents\git\openPAD\OpenPAD\obj\Debug\OpenPAD.csproj.CopyComplete

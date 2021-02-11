@@ -22,6 +22,7 @@ namespace OpenPAD
         private void okbtn_Click(object sender, EventArgs e)
         {
             Process.Start("mailto:"+ System.Net.WebUtility.UrlEncode(desttxt.Text)+"?subject="+objtxt.Text+ "&attachment="+ System.Net.WebUtility.UrlEncode(filename));
+            this.Close();
         }
 
         private void cancelbtn_Click(object sender, EventArgs e)
