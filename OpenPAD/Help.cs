@@ -19,7 +19,7 @@ namespace OpenPAD
 
         private void Help_Load(object sender, EventArgs e)
         {
-           // webBrowser1.Navigate();
+            webBrowser1.DocumentText=OpenPAD.Properties.Resources.guide;
         }
     }
 }

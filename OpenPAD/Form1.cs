@@ -32,19 +32,29 @@ namespace OpenPAD
             document.SelectionCharOffset = (int)interline.Value;
             if (CMDpath != "NOPATH")
             {
-                filename = CMDpath;
-                if (CMDpath.Contains(".rtf"))
+                if (CMDpath=="HOME")
                 {
-                    Read(CMDpath, true);
+                    filename = "";
                 }
                 else
                 {
-                    Read(CMDpath, false);
+                    filename = CMDpath;
+                    if (CMDpath.Contains(".rtf"))
+                    {
+                        Read(CMDpath, true);
+                    }
+                    else
+                    {
+                        Read(CMDpath, false);
+                    }
                 }
             }
             else
             {
                 filename = "";
+                this.Hide();
+                Welcome welcome = new Welcome();
+                welcome.Show();
             }
         }
         private string ExportFile()
@@ -555,7 +565,7 @@ namespace OpenPAD
                 if (res == DialogResult.OK)
                 {
                     document.Clear();
-                    this.Close();
+                    System.Windows.Forms.Application.Exit();
                 }
                 else
                 {
@@ -588,6 +598,30 @@ namespace OpenPAD
         {
             Help help = new Help();
             help.Show();
+        }
+
+        private void selezioneFontToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult res = mainFont.ShowDialog();
+            if (res == DialogResult.OK)
+            {
+                fontViewer.Text = mainFont.Font.Name;
+                if (document.SelectedText.Length == 0)
+                {
+                    document.Font = mainFont.Font;
+                }
+                else
+                {
+                    document.SelectionFont = mainFont.Font;
+                }
+            }
+            fontSize.Value = (decimal)document.Font.Size;
+        }
+
+        private void infoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            About ab = new About();
+            ab.ShowDialog();
         }
     }
 }
