@@ -1,4 +1,4 @@
 # OpenPAD
 
-##Semplice word processor di file rtf e txt
+## Semplice word processor di file rtf e txt
 
